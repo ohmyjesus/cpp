@@ -1,6 +1,6 @@
 # cpp
 
-此学习笔记来源于[黑马c++教程](https://www.bilibili.com/video/BV1et411b73Z?p=56)
+此学习笔记来源于[黑马c++教程](https://www.bilibili.com/video/BV1et411b73Z?p=56)，库中目前包含的有以下知识
 
 第一章. **基本语法**
 
