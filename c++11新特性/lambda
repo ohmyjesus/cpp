@@ -1,0 +1,50 @@
+#include<iostream>  
+#include <string>
+
+using namespace std; //命名空间
+
+
+//捕获当前类中的 this 指针,目的是可以在 lamda 中使用当前类的成员函数和成员变量。
+class temp {
+public:
+	int a = 0;;
+
+	void fun() {
+		auto f3 = [this] {++a; return a;};
+		cout << f3() << endl;
+	}
+	
+};
+
+//lambda表达式在函数体中的使用
+int main(void)
+{
+	int a = 0, b = 1;
+
+	//[] 不捕获任何变量		
+	auto f1 = [] { return a; };				//error，没有捕获外部变量，不能调用a      
+
+	//[&] 按引用捕获外部作用域中所有变量，并作为引用在函数体中使用
+	auto f2 = [&] { a++;  cout << a << endl; return  a; };
+	cout << f2() << endl;
+
+	//[=] 按值捕获外部作用域中所有变量，并作为副本在函数体中使用
+	auto f3 = [=] { return a; };             
+
+	// error，a是以复制方式捕获的，默认状态下 lambda 表达式无法修改通过复制方式捕获的外部变量，应该使用引用方式进行捕获。
+	auto f4 = [a] { return a++; };           
+
+	//[a] 按值捕获 a 变量，同时不捕获其他变量。
+	auto f5 = [a] { return a + b; };          // error，没有捕获变量b
+	cout << f5() << endl;
+
+	//[a， & b] 按值捕获变量a，并按引用捕获 b 变量。
+	auto f6 = [a, &b] { return a + (b++); };  
+
+	//[=， & b] 按值捕获外部作用域中所有变量，并按引用捕获 b 变量。
+	auto f7 = [=, &b] { return a + (b++); };  
+
+	temp t;
+	t.fun();
+	return 0;
+}
