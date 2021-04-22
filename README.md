@@ -41,10 +41,12 @@
 - 刷题
 - 根据面经来查漏补缺
 
+---
+
 ### 1. shared_ptr
 &emsp;&emsp;智能指针类似于常规指针，区别是它可以自动释放所指向的对象，智能指针包括shared_ptr，unique_ptr，weak_ptr，这三种指针均包含在memory头文件中。
 
-&emsp;&emsp;shared_ptr：允许多个指针指向同一个对象，它有一个关联的计数器，被称为引用计数，当拷贝或者赋值一个shared_ptr时，计数值就会加1，当销毁一个shared_ptr时，其值就会减1，当减到0时，它就会自动释放所指向的对象。 通常是调用make_shared库函数来返回此类型的指针。
+&emsp;&emsp;shared_ptr：允许多个指针指向同一个对象，它有一个关联的计数器，被称为引用计数，当拷贝或者赋值一个shared_ptr时，计数值就会加1，当销毁一个shared_ptr时，其值就会减1，当减到0时，它就会自动释放所指向的对象。 通常是调用make_shared库函数来返回此类型的指针。   针对这些功能做了一点测试代码 shared_ptr。
 
 
 ### 2. lambda表达式
