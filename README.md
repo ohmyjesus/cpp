@@ -54,7 +54,7 @@
 
 ```c++
 [capture list](parameter list) -> return type {function body}
-//捕获列表			参数列表           返回类型         函数体
+//捕获列表	 参数列表           返回类型        函数体
 ```
 
 lambda表达式可以忽略参数列表和返回类型，但必须包含捕获列表和函数体。				(必须使用后置返回，同时可以省略lambda表达式的返回值定义)
