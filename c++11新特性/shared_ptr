@@ -1,0 +1,46 @@
+#include<iostream>  
+#include <string>
+
+using namespace std;
+
+class Person {
+public:
+	Person(int v) {
+		value = v;
+		cout << "construct" << endl;
+	}
+
+	~Person() {
+		cout << "destroy" << endl;
+	}
+	static int number;
+
+private:
+	int value;
+};
+
+int Person::number = 666;
+
+void helper() {
+	shared_ptr<Person> c = make_shared<Person>(4);
+	cout << c->number << endl;
+}
+
+int main() {
+	auto a = make_shared<int>(42);			//auto自动接收智能指针
+	cout << *a << endl;
+
+	shared_ptr<Person> p1(new Person(1));	// Person(1)的引用计数为1   construct
+	//shared_ptr<Person> p2 = new Person(1);
+
+	helper();								//construct --> 666 --> destroy
+
+	p1.reset(new Person(2));				//首先生成新对象，然后引用计数减1，引用计数变为0，调用析构函数 construct --> destroy
+	auto p3 = p1;							//引用计数变为2
+	
+	p3.reset();								//引用计数变为1
+	p1.reset();								//引用计数变为0  destroy
+
+	system("pause");
+	return 0;
+}
