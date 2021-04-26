@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+#include <utility>
+using namespace std;
+
+void test() {
+	int a = 1;
+	auto f1 = [a] {return a + 1; };
+	cout << f1() << endl;
+	cout << a << endl;
+
+	string str;
+	str.assign(5, 'x');
+
+	cout << str << endl;
+}
+
+int main() {
+
+	//右值引用的操作，只能绑定到一个即将销毁的对象上，不能直接绑定到变量上
+	int a = 1;
+	int &b = a;
+	int &&r1 = 2;
+	r1 = a;
+	cout << r1 + 1 << endl;
+
+	//标准库move函数
+	int &&d = 42;
+	int &&e = std::move(d);
+	a = d;
+
+	int f = 136;
+	cout << f % 32 << endl;
+	cout << a << endl;
+
+	return 0;
+}
