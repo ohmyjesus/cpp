@@ -10,7 +10,7 @@ struct Node
     {  
         cout<<"Node()"<<endl;  
     }  
-  	shared_ptr<Node> _pre;  //    weak_ptr<Node> _pre;  应该使用unique_ptr弱引用来防止循环引用的问题
+  	shared_ptr<Node> _pre;  //    weak_ptr<Node> _pre;  应该使用weak_ptr弱引用来防止循环引用的问题
 	shared_ptr<Node> _next; //    weak_ptr<Node> _next;  
 
   
