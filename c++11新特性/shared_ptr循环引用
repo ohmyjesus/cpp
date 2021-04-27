@@ -29,7 +29,7 @@ void funtest()
     shared_ptr<Node> sp2(new Node(2)); 
   
     sp1->_next=sp2;  
-    sp2->_pre=sp1;    //如果使用shared_ptr时，此时会出现循环引用导致内存泄露，即无法调用构造函数
+    sp2->_pre=sp1;    //如果使用shared_ptr时，此时会出现循环引用导致内存泄露，即无法调用析构函数
 }  
 int main()  
 {  
