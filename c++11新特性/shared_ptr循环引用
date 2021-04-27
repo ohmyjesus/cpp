@@ -7,25 +7,26 @@ struct Node
 {  
     Node(int va)  
         :value(va)  
-          
     {  
         cout<<"Node()"<<endl;  
     }  
-  
+  	shared_ptr<Node> _pre;  //    weak_ptr<Node> _pre;  应该使用unique_ptr弱引用来防止循环引用的问题
+	shared_ptr<Node> _next; //    weak_ptr<Node> _next;  
+
   
     ~Node()  
     {  
         cout<<"~Node()"<<endl;  
     }  
-    weak_ptr<Node> _pre;  
-    weak_ptr<Node> _next;  
+
+
     int value;  
 };  
   
 void funtest()  
 {  
-    shared_ptr<Node> sp1(new Node(1)); //unique_ptr<Node> sp1(new Node(1));  应该使用unique_ptr弱引用来防止循环引用的问题
-    shared_ptr<Node> sp2(new Node(2)); //unique_ptr<Node> sp2(new Node(2));
+    shared_ptr<Node> sp1(new Node(1)); 
+    shared_ptr<Node> sp2(new Node(2)); 
   
     sp1->_next=sp2;  
     sp2->_pre=sp1;    //如果使用shared_ptr时，此时会出现循环引用导致内存泄露，即无法调用构造函数
